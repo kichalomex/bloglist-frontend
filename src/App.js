@@ -53,9 +53,11 @@ const Toggable = forwardRef((props, ref) => {
   )
 })
 
-Toggable.PropTypes = {
+Toggable.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
 }
+
+Toggable.displayName = "Toggable"
 
 const App = () => {
   const blogFormRef = useRef()
