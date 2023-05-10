@@ -57,7 +57,7 @@ Toggable.propTypes = {
   buttonLabel: PropTypes.string.isRequired,
 }
 
-Toggable.displayName = "Toggable"
+//Toggable.displayName = "Toggable"
 
 const App = () => {
   const blogFormRef = useRef()
