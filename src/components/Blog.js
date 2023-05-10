@@ -1,5 +1,5 @@
 import { useState } from "react"
-//, user
+
 const Blog = ({ blog, updateLike, removeBlog, user}) => {
   const [visible, setVisible] = useState(false)
 
@@ -29,15 +29,14 @@ const Blog = ({ blog, updateLike, removeBlog, user}) => {
   }
 
   const handleRemove = () => {
-    /*removeBlog(blog.id)*/
     if (window.confirm("Are you sure you want to remove this blog?") === true) {
       removeBlog(blog.id)
     }
   }
 
-  //const showDelete = blog.user && blog.user.id === user.id ? true : false;
+  //const showDelete = blog.user.id === user.id ? true : false
 
-
+  const showDelete = blog.user && blog.user.id === user.id;
   return (
     <>
       <div style={blogStyle}>
@@ -55,7 +54,7 @@ const Blog = ({ blog, updateLike, removeBlog, user}) => {
           <br />
           {blog.author}
           <br />
-          <button onClick={handleRemove}>remove</button>
+          {showDelete && <button onClick={handleRemove}>remove</button>}
         </div>
       </div>
     </>
