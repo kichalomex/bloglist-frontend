@@ -6,12 +6,12 @@ describe("blog app", function () {
       username: "Alma",
       name: "Maria Marcela",
       password: "julian2010",
-		}
+    }
 
-		const user2 = {
-			username: "Alex",
-			name: "Alejandro",
-			password: "julian2010",
+    const user2 = {
+      username: "Alex",
+      name: "Alejandro",
+      password: "julian2010",
     }
 
     cy.request("POST", "http://localhost:3001/api/users", user)
@@ -48,32 +48,45 @@ describe("blog app", function () {
     })
   })
 
-	describe("when logged in", () => {
-		beforeEach(() => {
-			cy.login({ username: "Alma", password: "julian2010" })
-		})
+  describe("when logged in", () => {
+    beforeEach(() => {
+      cy.login({ username: "Alma", password: "julian2010" })
+    })
 
-		it("A blog can be created", () => {
-			cy.get("#create").contains("Create new blog").click()
-			cy.get("#title").type("A new blog created by cypress")
-		  cy.get("#author").type("Cypress")
-			cy.get("#url").type("https://www.cypress.com")
-			cy.get("#create-button").click()
-			cy.get(".success").contains("Successfully created blog")
-			cy.contains("A new blog created by cypress")
-		})
+    it("A blog can be created", () => {
+      cy.get("#create").contains("Create new blog").click()
+      cy.get("#title").type("A new blog created by cypress")
+      cy.get("#author").type("Cypress")
+      cy.get("#url").type("https://www.cypress.com")
+      cy.get("#create-button").click()
+      cy.get(".success").contains("Successfully created blog")
+      cy.contains("A new blog created by cypress")
+    })
 
-		it("A blog can be liked", () => {
-			cy.createBlog({
-				title: "A second blog created by cypress",
-				author: "Cypress",
-				url: "https://www.cypress.com",
-			})
+    it("A blog can be liked", () => {
+      cy.createBlog({
+        title: "A second blog created by cypress",
+        author: "Cypress",
+        url: "https://www.cypress.com",
+      })
 
-			cy.contains("A second blog created by cypress")
-				.contains("view")
-				.click()
-			cy.contains("like").click()
-		})
-	})
+      cy.contains("A second blog created by cypress")
+        .contains("view")
+        .click()
+      cy.contains("like").click()
+    })
+
+    it("A blog can be deleted", () => {
+      cy.createBlog({
+        title: "A third blog created by cypress",
+        author: "Cypress",
+        url: "https://www.cypress.com",
+      })
+
+      cy.contains("A third blog created by cypress")
+        .contains("view")
+        .click()
+      cy.contains("remove").click()
+    })
+  })
 })
