@@ -107,7 +107,7 @@ describe("blog app", function () {
       cy.contains("remove").should("not.exist")
     })
 
-    it.only("Blogs are ordered by likes", () => {
+    it("Blogs are ordered by likes", () => {
       cy.createBlog({
         title: "The title with most likes",
         author: "Cypress",
