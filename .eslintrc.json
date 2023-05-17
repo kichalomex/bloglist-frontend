@@ -20,7 +20,7 @@
   "plugins": [
     "react",
 		"jest",
-		"cypress/globals"
+		"cypress"
   ],
   "rules": {
     "indent": [
