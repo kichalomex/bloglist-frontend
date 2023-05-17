@@ -43,11 +43,15 @@ const Toggable = forwardRef((props, ref) => {
     <div>
       <div style={hideWhenVisible}>
         <br />
-        <button onClick={toggleVisibility}>{props.buttonLabel}</button>
+        <button id={props.id} onClick={toggleVisibility}>
+					{props.buttonLabel}
+				</button>
       </div>
       <div style={showWhenVisible}>
         {props.children}
-        <button onClick={toggleVisibility}>cancel</button>
+        <button id="cancel" onClick={toggleVisibility}>
+					cancel
+				</button>
       </div>
     </div>
   )
@@ -176,28 +180,36 @@ const App = () => {
       <div>
         <h1>Blogs</h1>
         <Notification message={message} />
-        <Toggable buttonLabel="login">
+        <Toggable id="login" buttonLabel="login">
           <h2>Log in</h2>
           <form onSubmit={handleLogin}>
             <div>
               username{" "}
               <input
+                id="username"
                 type="text"
                 name="Username"
                 value={username}
-                onChange={({ target }) => setUsername(target.value)}
+                onChange={({ target }) => 
+                  setUsername(target.value)
+                }
               />
             </div>
             <div>
               password{" "}
               <input
+                id="password"
                 type="password"
                 name="Password"
                 value={password}
-                onChange={({ target }) => setPassword(target.value)}
+                onChange={({ target }) => 
+                  setPassword(target.value)
+                }
               />
             </div>
-            <button type="submit">login</button>
+            <button id="login-button" type="submit">
+							login
+						</button>
           </form>
         </Toggable>
       </div>
@@ -214,8 +226,12 @@ const App = () => {
           logout
         </button>
       </div>
-      <Toggable buttonLabel="Create new blog" ref={blogFormRef}>
-        <BlogForm createBlog={createBlog} />
+      <Toggable
+			  id="create"
+				buttonLabel="Create new blog"
+				ref={blogFormRef}
+			>        
+      <BlogForm createBlog={createBlog} />
       </Toggable>
       <br />
       {blogs.map(blog => (
