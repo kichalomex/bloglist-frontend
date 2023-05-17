@@ -30,6 +30,7 @@ describe("blog app", function () {
       cy.get("#username").type("Alma")
       cy.get("#password").type("julian2010")
       cy.get("#login-button").click()
+      cy.wait(1000)
       cy.get(".success").contains("Successfully logged in")
     })
 
@@ -38,6 +39,7 @@ describe("blog app", function () {
       cy.get("#username").type("Alma")
       cy.get("#password").type("wrongPassword")
       cy.get("#login-button").click()
+      cy.wait(1000)
 
       cy.get(".error")
         .should("contain", "Wrong Credentials")
@@ -59,6 +61,7 @@ describe("blog app", function () {
       cy.get("#author").type("Cypress")
       cy.get("#url").type("https://www.cypress.com")
       cy.get("#create-button").click()
+      cy.wait(1000)
       cy.get(".success").contains("Successfully created blog")
       cy.contains("A new blog created by cypress")
     })
@@ -73,7 +76,9 @@ describe("blog app", function () {
       cy.contains("A second blog created by cypress")
         .contains("view")
         .click()
+      cy.wait(1000)
       cy.contains("like").click()
+      cy.wait(1000)
     })
 
     it("A blog can be deleted", () => {
@@ -86,7 +91,9 @@ describe("blog app", function () {
       cy.contains("A third blog created by cypress")
         .contains("view")
         .click()
+      cy.wait(1000)
       cy.contains("remove").click()
+      cy.wait(1000)
     })
 
     it("A blog cant be deleted only but his owner", () => {
@@ -103,7 +110,7 @@ describe("blog app", function () {
       cy.contains("A fourth blog created by cypress")
         .contains("view")
         .click()
-
+      cy.wait(1000)
       cy.contains("remove").should("not.exist")
     })
 
@@ -122,7 +129,7 @@ describe("blog app", function () {
 
       cy.contains("The title with most likes").contains("view").click()
       cy.get("button").contains("like").click()
-
+      cy.wait(1000)
       cy.get(".blog").eq(0).should("contain", "The title with most likes")
       cy.get(".blog")
         .eq(1)
